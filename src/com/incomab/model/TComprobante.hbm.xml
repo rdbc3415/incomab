@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 29/08/2017 10:56:48 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.incomab.model.TComprobante" table="t_comprobante" schema="public" optimistic-lock="version">
+        <id name="codigoComprobante" type="string">
+            <column name="codigo_comprobante" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="TEntidad" class="com.incomab.model.TEntidad" fetch="select">
+            <column name="numero_entidad" not-null="true" />
+        </many-to-one>
+        <many-to-one name="TPrincipal" class="com.incomab.model.TPrincipal" fetch="select">
+            <column name="ruc_principal" not-null="true" />
+        </many-to-one>
+        <property name="tipoDocComprob" type="string">
+            <column name="tipo_doc_comprob" length="100" not-null="true" />
+        </property>
+        <property name="tipoOperaComprob" type="string">
+            <column name="tipo_opera_comprob" not-null="true" />
+        </property>
+        <property name="monedaComprob" type="string">
+            <column name="moneda_comprob" length="50" not-null="true" />
+        </property>
+        <property name="tipoCambioComprob" type="big_decimal">
+            <column name="tipo_cambio_comprob" precision="131089" scale="0" />
+        </property>
+        <property name="fechaEmisionComprob" type="date">
+            <column name="fecha_emision_comprob" length="13" not-null="true" />
+        </property>
+        <property name="fechaVencimientoComprob" type="date">
+            <column name="fecha_vencimiento_comprob" length="13" not-null="true" />
+        </property>
+        <property name="enviadoSunatComprob" type="boolean">
+            <column name="enviado_sunat_comprob" not-null="true" />
+        </property>
+        <property name="estadoPagoComprob" type="boolean">
+            <column name="estado_pago_comprob" not-null="true" />
+        </property>
+        <property name="observacionComprob" type="string">
+            <column name="observacion_comprob" length="500" not-null="true" />
+        </property>
+        <property name="estadoComprob" type="boolean">
+            <column name="estado_comprob" not-null="true" />
+        </property>
+        <property name="descuentoComprob" type="big_decimal">
+            <column name="descuento_comprob" precision="131089" scale="0" />
+        </property>
+        <property name="otrosCargosComprob" type="big_decimal">
+            <column name="otros_cargos_comprob" precision="131089" scale="0" />
+        </property>
+        <property name="idUser" type="int">
+            <column name="id_user" not-null="true" />
+        </property>
+        <one-to-one name="TNotaDebito" class="com.incomab.model.TNotaDebito"></one-to-one>
+        <one-to-one name="TNotaCredito" class="com.incomab.model.TNotaCredito"></one-to-one>
+        <one-to-one name="TFactura" class="com.incomab.model.TFactura"></one-to-one>
+        <one-to-one name="TBoleta" class="com.incomab.model.TBoleta"></one-to-one>
+        <set name="TVentas" table="t_venta" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="codigo_comprobante" not-null="true" />
+            </key>
+            <one-to-many class="com.incomab.model.TVenta" />
+        </set>
+    </class>
+</hibernate-mapping>

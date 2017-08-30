@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 29/08/2017 10:56:48 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.incomab.model.TUnidadMedida" table="t_unidad_medida" schema="public" optimistic-lock="version">
+        <id name="codigoTipo" type="string">
+            <column name="codigo_tipo" />
+            <generator class="foreign">
+                <param name="property">TTipoUnidad</param>
+            </generator>
+        </id>
+        <one-to-one name="TTipoUnidad" class="com.incomab.model.TTipoUnidad" constrained="true"></one-to-one>
+        <property name="descripcionUnidad" type="string">
+            <column name="descripcion_unidad" not-null="true" />
+        </property>
+        <set name="TProductos" table="t_producto" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="codigo_tipo" not-null="true" />
+            </key>
+            <one-to-many class="com.incomab.model.TProducto" />
+        </set>
+    </class>
+</hibernate-mapping>

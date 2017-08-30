@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 29/08/2017 10:56:48 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.incomab.model.TIgv" table="t_igv" schema="public" optimistic-lock="version">
+        <id name="codigoIgv" type="int">
+            <column name="codigo_igv" />
+            <generator class="assigned" />
+        </id>
+        <property name="tipoIgv" type="string">
+            <column name="tipo_igv" not-null="true" />
+        </property>
+        <property name="porcentajeIgv" type="big_decimal">
+            <column name="porcentaje_igv" precision="131089" scale="0" not-null="true" />
+        </property>
+        <set name="TVentas" table="t_venta" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="codigo_igv" not-null="true" />
+            </key>
+            <one-to-many class="com.incomab.model.TVenta" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 29/08/2017 10:56:48 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.incomab.model.TEntidad" table="t_entidad" schema="public" optimistic-lock="version">
+        <id name="numeroEntidad" type="string">
+            <column name="numero_entidad" />
+            <generator class="assigned" />
+        </id>
+        <property name="tipoDocEntidad" type="string">
+            <column name="tipo_doc_entidad" not-null="true" />
+        </property>
+        <property name="razonSocialEntidad" type="string">
+            <column name="razon_social_entidad" not-null="true" />
+        </property>
+        <property name="razonComercialEntidad" type="string">
+            <column name="razon_comercial_entidad" not-null="true" />
+        </property>
+        <property name="direccionFiscalEntidad" type="string">
+            <column name="direccion_fiscal_entidad" not-null="true" />
+        </property>
+        <property name="emailMainEntidad" type="string">
+            <column name="email_main_entidad" />
+        </property>
+        <property name="emailAEntidad" type="string">
+            <column name="email_a_entidad" />
+        </property>
+        <property name="emailBEntidad" type="string">
+            <column name="email_b_entidad" />
+        </property>
+        <property name="movilEntidad" type="string">
+            <column name="movil_entidad" length="20" />
+        </property>
+        <property name="fijoEntidad" type="string">
+            <column name="fijo_entidad" length="20" />
+        </property>
+        <property name="numCuentaDetraccionEntidad" type="string">
+            <column name="num_cuenta_detraccion_entidad" />
+        </property>
+        <property name="detalleEntidad" type="string">
+            <column name="detalle_entidad" />
+        </property>
+        <set name="TComprobantes" table="t_comprobante" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="numero_entidad" not-null="true" />
+            </key>
+            <one-to-many class="com.incomab.model.TComprobante" />
+        </set>
+        <set name="TCompras" table="t_compra" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="numero_entidad" not-null="true" />
+            </key>
+            <one-to-many class="com.incomab.model.TCompra" />
+        </set>
+    </class>
+</hibernate-mapping>

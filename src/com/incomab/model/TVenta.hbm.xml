@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 29/08/2017 10:56:48 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.incomab.model.TVenta" table="t_venta" schema="public" optimistic-lock="version">
+        <id name="idVenta" type="int">
+            <column name="id_venta" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="TComprobante" class="com.incomab.model.TComprobante" fetch="select">
+            <column name="codigo_comprobante" not-null="true" />
+        </many-to-one>
+        <many-to-one name="TIgv" class="com.incomab.model.TIgv" fetch="select">
+            <column name="codigo_igv" not-null="true" />
+        </many-to-one>
+        <many-to-one name="TProducto" class="com.incomab.model.TProducto" fetch="select">
+            <column name="codigo_producto" not-null="true" />
+        </many-to-one>
+        <property name="detalleAdicionalVenta" type="string">
+            <column name="detalle_adicional_venta" />
+        </property>
+        <property name="cantidadVenta" type="int">
+            <column name="cantidad_venta" not-null="true" />
+        </property>
+        <property name="valorUVenta" type="big_decimal">
+            <column name="valor_u_venta" precision="131089" scale="0" not-null="true" />
+        </property>
+        <property name="subtotalVenta" type="big_decimal">
+            <column name="subtotal_venta" precision="131089" scale="0" not-null="true" />
+        </property>
+        <property name="totalVenta" type="big_decimal">
+            <column name="total_venta" precision="131089" scale="0" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

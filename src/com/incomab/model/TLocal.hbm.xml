@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 29/08/2017 10:56:48 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.incomab.model.TLocal" table="t_local" schema="public" optimistic-lock="version">
+        <id name="codigoLocal" type="int">
+            <column name="codigo_local" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombreLocal" type="string">
+            <column name="nombre_local" not-null="true" />
+        </property>
+        <property name="ubigeoInei" type="int">
+            <column name="ubigeo_inei" not-null="true" />
+        </property>
+        <property name="departamento" type="string">
+            <column name="departamento" not-null="true" />
+        </property>
+        <property name="provincia" type="string">
+            <column name="provincia" not-null="true" />
+        </property>
+        <property name="distrito" type="string">
+            <column name="distrito" not-null="true" />
+        </property>
+        <property name="direccion" type="string">
+            <column name="direccion" not-null="true" />
+        </property>
+        <set name="TCuentases" table="t_cuentas" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="codigo_local" not-null="true" />
+            </key>
+            <one-to-many class="com.incomab.model.TCuentas" />
+        </set>
+        <set name="TUsuariosLocals" table="t_usuarios_local" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="codigo_local" not-null="true" />
+            </key>
+            <one-to-many class="com.incomab.model.TUsuariosLocal" />
+        </set>
+        <set name="TSeries" table="t_serie" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="codigo_local" not-null="true" />
+            </key>
+            <one-to-many class="com.incomab.model.TSerie" />
+        </set>
+        <set name="TPrincipals" table="t_principal" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="codigo_local" not-null="true" />
+            </key>
+            <one-to-many class="com.incomab.model.TPrincipal" />
+        </set>
+    </class>
+</hibernate-mapping>

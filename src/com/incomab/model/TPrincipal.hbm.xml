@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 29/08/2017 10:56:48 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.incomab.model.TPrincipal" table="t_principal" schema="public" optimistic-lock="version">
+        <id name="rucPrincipal" type="string">
+            <column name="ruc_principal" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="TLocal" class="com.incomab.model.TLocal" fetch="select">
+            <column name="codigo_local" not-null="true" />
+        </many-to-one>
+        <property name="razonSocialPrincipal" type="string">
+            <column name="razon_social_principal" />
+        </property>
+        <property name="telefonoPrincipal" type="string">
+            <column name="telefono_principal" length="50" />
+        </property>
+        <property name="emailPrincipal" type="string">
+            <column name="email_principal" />
+        </property>
+        <property name="razonComercialPrincipal" type="string">
+            <column name="razon_comercial_principal" />
+        </property>
+        <property name="webPrincipal" type="string">
+            <column name="web_principal" />
+        </property>
+        <property name="logoPrincipal" type="binary">
+            <column name="logo_principal" />
+        </property>
+        <property name="formatoFacturasPrincipal" type="string">
+            <column name="formato_facturas_principal" length="50" not-null="true" />
+        </property>
+        <property name="formatoBoletasPrincipal" type="string">
+            <column name="formato_boletas_principal" length="50" not-null="true" />
+        </property>
+        <property name="colorComprobantePrincipal" type="string">
+            <column name="color_comprobante_principal" length="50" not-null="true" />
+        </property>
+        <property name="datosCabeceraPrincipal" type="string">
+            <column name="datos_cabecera_principal" not-null="true" />
+        </property>
+        <set name="TComprobantes" table="t_comprobante" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ruc_principal" not-null="true" />
+            </key>
+            <one-to-many class="com.incomab.model.TComprobante" />
+        </set>
+    </class>
+</hibernate-mapping>

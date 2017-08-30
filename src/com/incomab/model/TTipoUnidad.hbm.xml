@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 29/08/2017 10:56:48 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.incomab.model.TTipoUnidad" table="t_tipo_unidad" schema="public" optimistic-lock="version">
+        <id name="codigoTipo" type="string">
+            <column name="codigo_tipo" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombreTipo" type="string">
+            <column name="nombre_tipo" not-null="true" />
+        </property>
+        <one-to-one name="TUnidadMedida" class="com.incomab.model.TUnidadMedida"></one-to-one>
+    </class>
+</hibernate-mapping>

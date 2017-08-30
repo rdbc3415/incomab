@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 29/08/2017 10:56:48 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.incomab.model.TNotaDebito" table="t_nota_debito" schema="public" optimistic-lock="version">
+        <id name="codigoComprobante" type="string">
+            <column name="codigo_comprobante" />
+            <generator class="foreign">
+                <param name="property">TComprobante</param>
+            </generator>
+        </id>
+        <one-to-one name="TComprobante" class="com.incomab.model.TComprobante" constrained="true"></one-to-one>
+        <property name="numeroDebito" type="int">
+            <column name="numero_debito" not-null="true" />
+        </property>
+        <property name="serieDebito" type="string">
+            <column name="serie_debito" length="50" not-null="true" />
+        </property>
+        <property name="docModificar" type="string">
+            <column name="doc_modificar" />
+        </property>
+        <property name="serieDocModificar" type="string">
+            <column name="serie_doc_modificar" length="20" />
+        </property>
+        <property name="numeroDocModificar" type="string">
+            <column name="numero_doc_modificar" />
+        </property>
+        <property name="tipoNotaDebito" type="string">
+            <column name="tipo_nota_debito" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 29/08/2017 10:56:48 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.incomab.model.TProducto" table="t_producto" schema="public" optimistic-lock="version">
+        <id name="codigoProducto" type="string">
+            <column name="codigo_producto" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="TUnidadMedida" class="com.incomab.model.TUnidadMedida" fetch="select">
+            <column name="codigo_tipo" not-null="true" />
+        </many-to-one>
+        <property name="nombreProducto" type="string">
+            <column name="nombre_producto" not-null="true" />
+        </property>
+        <property name="monedaProducto" type="string">
+            <column name="moneda_producto" length="100" not-null="true" />
+        </property>
+        <property name="valorUProducto" type="big_decimal">
+            <column name="valor_u_producto" precision="131089" scale="0" />
+        </property>
+        <property name="precioUProducto" type="big_decimal">
+            <column name="precio_u_producto" precision="131089" scale="0" />
+        </property>
+        <set name="TVentas" table="t_venta" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="codigo_producto" not-null="true" />
+            </key>
+            <one-to-many class="com.incomab.model.TVenta" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 29/08/2017 10:56:48 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.incomab.model.TCompra" table="t_compra" schema="public" optimistic-lock="version">
+        <id name="codigoCompra" type="int">
+            <column name="codigo_compra" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="TEntidad" class="com.incomab.model.TEntidad" fetch="select">
+            <column name="numero_entidad" not-null="true" />
+        </many-to-one>
+        <property name="fechaEmisionCompra" type="date">
+            <column name="fecha_emision_compra" length="13" not-null="true" />
+        </property>
+        <property name="fechaVencimientoCompra" type="date">
+            <column name="fecha_vencimiento_compra" length="13" not-null="true" />
+        </property>
+        <property name="tipoCompra" type="string">
+            <column name="tipo_compra" />
+        </property>
+        <property name="serieCompra" type="string">
+            <column name="serie_compra" length="50" not-null="true" />
+        </property>
+        <property name="numeroCompra" type="int">
+            <column name="numero_compra" not-null="true" />
+        </property>
+        <property name="denominacionCompra" type="string">
+            <column name="denominacion_compra" not-null="true" />
+        </property>
+        <property name="monedaCompra" type="string">
+            <column name="moneda_compra" length="50" not-null="true" />
+        </property>
+        <property name="tcCompra" type="big_decimal">
+            <column name="tc_compra" precision="131089" scale="0" not-null="true" />
+        </property>
+        <property name="gravadaCompra" type="big_decimal">
+            <column name="gravada_compra" precision="131089" scale="0" />
+        </property>
+        <property name="exoneradaCompra" type="big_decimal">
+            <column name="exonerada_compra" precision="131089" scale="0" />
+        </property>
+        <property name="inafectaCompra" type="big_decimal">
+            <column name="inafecta_compra" precision="131089" scale="0" />
+        </property>
+        <property name="iscCompra" type="big_decimal">
+            <column name="isc_compra" precision="131089" scale="0" />
+        </property>
+        <property name="igvCompra" type="big_decimal">
+            <column name="igv_compra" precision="131089" scale="0" not-null="true" />
+        </property>
+        <property name="otrosCompra" type="big_decimal">
+            <column name="otros_compra" precision="131089" scale="0" />
+        </property>
+        <property name="totalCompra" type="big_decimal">
+            <column name="total_compra" precision="131089" scale="0" not-null="true" />
+        </property>
+        <property name="detraccionBoolCompra" type="boolean">
+            <column name="detraccion_bool_compra" not-null="true" />
+        </property>
+        <property name="importeDetraccionCompra" type="boolean">
+            <column name="importe_detraccion_compra" not-null="true" />
+        </property>
+        <property name="detalleCompra" type="string">
+            <column name="detalle_compra" length="500" />
+        </property>
+        <property name="anuladoBool" type="boolean">
+            <column name="anulado_bool" not-null="true" />
+        </property>
+        <property name="fechaDocModificadoCompra" type="date">
+            <column name="fecha_doc_modificado_compra" length="13" />
+        </property>
+        <property name="tipoDocModificadoCompra" type="string">
+            <column name="tipo_doc_modificado_compra" />
+        </property>
+        <property name="serieDocModificadoCompra" type="string">
+            <column name="serie_doc_modificado_compra" />
+        </property>
+        <property name="numeroDocModificadoCompra" type="string">
+            <column name="numero_doc_modificado_compra" />
+        </property>
+        <property name="observacionesCompra" type="string">
+            <column name="observaciones_compra" />
+        </property>
+    </class>
+</hibernate-mapping>

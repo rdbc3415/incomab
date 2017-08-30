@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 29/08/2017 10:56:48 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.incomab.model.TUsuario" table="t_usuario" schema="public" optimistic-lock="version">
+        <id name="idUser" type="int">
+            <column name="id_user" />
+            <generator class="assigned" />
+        </id>
+        <property name="userName" type="string">
+            <column name="user_name" length="50" not-null="true" />
+        </property>
+        <property name="userPass" type="string">
+            <column name="user_pass" length="500" not-null="true" />
+        </property>
+        <property name="nombreUsuario" type="string">
+            <column name="nombre_usuario" length="500" not-null="true" />
+        </property>
+        <property name="emailUsuario" type="string">
+            <column name="email_usuario" />
+        </property>
+        <property name="telefonoUsuario" type="string">
+            <column name="telefono_usuario" length="20" />
+        </property>
+        <property name="celularUsuario" type="string">
+            <column name="celular_usuario" length="20" />
+        </property>
+        <property name="rolControlUsuarios" type="boolean">
+            <column name="rol_control_usuarios" not-null="true" />
+        </property>
+        <property name="rolConfigurar" type="boolean">
+            <column name="rol_configurar" not-null="true" />
+        </property>
+        <property name="rolLocales" type="boolean">
+            <column name="rol_locales" not-null="true" />
+        </property>
+        <property name="rolGenerarComprobante" type="boolean">
+            <column name="rol_generar_comprobante" not-null="true" />
+        </property>
+        <property name="rolConsultarComprobante" type="boolean">
+            <column name="rol_consultar_comprobante" not-null="true" />
+        </property>
+        <property name="rolGenerarResumenes" type="boolean">
+            <column name="rol_generar_resumenes" not-null="true" />
+        </property>
+        <property name="rolConsultarResumenes" type="boolean">
+            <column name="rol_consultar_resumenes" not-null="true" />
+        </property>
+        <property name="rolGenerarBajas" type="boolean">
+            <column name="rol_generar_bajas" not-null="true" />
+        </property>
+        <property name="rolConsultarBajas" type="boolean">
+            <column name="rol_consultar_bajas" not-null="true" />
+        </property>
+        <property name="rolCatalogos" type="boolean">
+            <column name="rol_catalogos" not-null="true" />
+        </property>
+        <property name="rolConsultarCatalogos" type="boolean">
+            <column name="rol_consultar_catalogos" not-null="true" />
+        </property>
+        <property name="rolEntidades" type="boolean">
+            <column name="rol_entidades" not-null="true" />
+        </property>
+        <property name="rolCertificadoDigital" type="boolean">
+            <column name="rol_certificado_digital" not-null="true" />
+        </property>
+        <property name="rolCuentas" type="boolean">
+            <column name="rol_cuentas" not-null="true" />
+        </property>
+        <property name="rolApiIntegracion" type="boolean">
+            <column name="rol_api_integracion" not-null="true" />
+        </property>
+        <set name="TUsuariosLocals" table="t_usuarios_local" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_user" not-null="true" />
+            </key>
+            <one-to-many class="com.incomab.model.TUsuariosLocal" />
+        </set>
+    </class>
+</hibernate-mapping>
