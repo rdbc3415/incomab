@@ -10,6 +10,8 @@ import com.jfoenix.controls.JFXSnackbar;
 import com.jfoenix.controls.JFXTextField;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
 import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.net.Socket;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,16 +59,19 @@ public class LoginController implements Initializable {
     private ImageView bckLogin;
     @FXML
     private HBox hbxLogin;
+    
+   
+    
+    @FXML
+    private JFXButton btnIngresar;
+    @FXML
+    private JFXTextField txtUSER;
+    @FXML
+    private JFXPasswordField txtCONTRA;
+    @FXML
+    private JFXSnackbar snackMensaje;
     @FXML
     private AnchorPane LOGINPANE;
-    @FXML
-    private JFXSnackbar SBMENSAJE;
-    @FXML
-    private JFXButton BTNLOGIN;
-    @FXML
-    private JFXTextField TXTUSER;
-    @FXML
-    private JFXPasswordField TXTPASSWORD;
 
 
     /**
@@ -75,7 +80,7 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        LoadSlide();
-       SBMENSAJE=new JFXSnackbar(LOGINPANE);
+       snackMensaje=new JFXSnackbar(LOGINPANE);
        error=new ErroresUtil();
        }    
     //A LIST OF IMAGES IN A ETHERNAL LOOP TRANSITION
@@ -137,43 +142,30 @@ public class LoginController implements Initializable {
         stage.setIconified(true);
     }
 
-    @FXML
-    private void Handle_Login(MouseEvent event) {
-         Input_ok();
-         String ex="";
-         if(TXTUSER.getText().trim().equals("")){
-             ex=error.getIncorrectUser();
-             Show_snack(event, ex);
-         }else if(TXTPASSWORD.getText().trim().equals("")){
-             ex=error.getIncorrectPassw();
-             Show_snack(event, ex);
-         } else{
-             Stage stage = (Stage) BTNLOGIN.getScene().getWindow();
-            // close login view
-            stage.close();
-             Load_main_window(event);
-         }       
-    }
+  
     //show the snackbar on screen whenever mousevent on login button 
     private void Show_snack(MouseEvent e,String m){
-        SBMENSAJE.show(m, 3000);   
+        snackMensaje.show(m, 3000);   
         Input_fail(m);
     }
     //handle style of textfields when something went wrong
     private void Input_fail(String m){
         String stilo="-fx-text-fill: red; -jfx-focus-color: red; -jfx-unfocus-color:red";
         if(m.equals(error.getIncorrectUser())){
-        TXTUSER.setStyle(stilo);        
+        txtUSER.setStyle(stilo);        
         }
         if(m.equals(error.getIncorrectPassw())){
-         TXTPASSWORD.setStyle(stilo);    
+         txtCONTRA.setStyle(stilo);    
         }
     }
+    
+
+    
     //handle style of textfields when everything is correct
     private void Input_ok(){
         String stilo="-fx-text-fill: black; -jfx-focus-color: #2c4251; -jfx-unfocus-color: #4d4d4d;";
-        TXTUSER.setStyle(stilo);
-        TXTPASSWORD.setStyle(stilo);
+        txtUSER.setStyle(stilo);
+        txtCONTRA.setStyle(stilo);
     }  
     
     private void Load_main_window(MouseEvent event){               
@@ -187,4 +179,36 @@ public class LoginController implements Initializable {
             System.out.println(e.getMessage());
           }
 }
+
+    @FXML
+    private void handleLogin(MouseEvent event) {
+    
+  
+         Input_ok();
+         String ex="";
+         if(txtUSER.getText().trim().equals("")){
+             ex=error.getIncorrectUser();
+             Show_snack(event, ex);
+         }else if(txtCONTRA.getText().trim().equals("")){
+             ex=error.getIncorrectPassw();
+             Show_snack(event, ex);
+         } else{
+             Stage stage = (Stage) btnIngresar.getScene().getWindow();
+            // close login view
+            stage.close();
+             Load_main_window(event);
+             
+             
+             
+             
+         }       
+    
+    
+        
+    }
 }
+    
+    
+    
+    
+

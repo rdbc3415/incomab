@@ -12,7 +12,9 @@ public class ErroresUtil {
     private final String incorrectPassw="VERIFIQUE LA CONTRASEÑA";
     private final String missingConnection="SE PERDIO LA CONEXION A INTERNET";
     private final String cantLogin="DATOS DE SESION INCORRECTOS";
-
+    
+    
+    
     /**
      * @return the incorrectUser
      */
@@ -40,4 +42,9 @@ public class ErroresUtil {
     public String getCantLogin() {
         return cantLogin;
     }
+    
+    
+    
+    
+    
 }
